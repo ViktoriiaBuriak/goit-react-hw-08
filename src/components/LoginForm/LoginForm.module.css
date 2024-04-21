@@ -38,7 +38,7 @@
 }
 
 .formBtn {
-  width: max-content;
+  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;

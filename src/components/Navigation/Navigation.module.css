@@ -1,0 +1,25 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pages {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navLink.active {
+  border: 2px solid #84336f;
+  border-radius: 8px;
+  color: #84336f;
+  padding: 8px;
+}
+

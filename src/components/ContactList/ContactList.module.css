@@ -1,5 +1,6 @@
 .contactList {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -8,6 +9,7 @@
   display: flex;
   width: 250px;
   justify-content: space-between;
+  align-items: center;
   border: 2px solid #2f2828;
   border-radius: 12px;
   padding: 8px;
