@@ -6,13 +6,13 @@ const Loader = () => {
     <div className={css.loader}>
       <Comment
         visible={true}
-        height="120"
-        width="120"
+        height="80"
+        width="80"
         ariaLabel="comment-loading"
         wrapperStyle={{}}
         wrapperClass="comment-wrapper"
         color="#fff"
-        backgroundColor="#F4442E"
+        backgroundColor="#84336f"
       />
     </div>
   );

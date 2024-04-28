@@ -1,44 +1,61 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import css from "./RegistrationForm.module.css"
+import css from "./RegistrationForm.module.css";
+import { register } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+
   const initialValues = {
-    username: "",
+    name: "",
     email: "",
     password: "",
   };
 
-  const usernameId = useId();
+  const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
 
   const FeedbackSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
+    name: Yup.string()
+      .min(1, "Too Short!")
+      .max(38, "Too Long!")
       .required("Required"),
     email: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
+      .email("You must enter valid email address!")
+      .required("Required"),
+    password: Yup.string()
+      .min(7, "Too Short!")
+      .max(38, "Too Long!")
       .required("Required"),
   });
+
+  const handleSubmit = (value, action) => {
+    dispatch(register(value));
+    action.resetForm();
+  };
   return (
-    <Formik initialValues={initialValues} validationSchema={FeedbackSchema}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={FeedbackSchema}
+      onSubmit={handleSubmit}
+    >
       <Form className={css.form}>
-        <label className={css.formTitle} htmlFor={usernameId}>
-          Username
+        <label className={css.formTitle} htmlFor={nameId}>
+          Name
         </label>
         <Field
           className={css.formInput}
           type="text"
-          name="username"
-          id={usernameId}
+          name="name"
+          id={nameId}
+          placeholder="Enter your name"
         />
         <ErrorMessage
           className={css.errorMassage}
-          name="username"
+          name="name"
           component="span"
         />
         <label className={css.formTitle} htmlFor={emailId}>
@@ -49,6 +66,7 @@ const RegistrationForm = () => {
           type="email"
           name="email"
           id={emailId}
+          placeholder="Enter your email"
         />
         <ErrorMessage
           className={css.errorMassage}
@@ -63,6 +81,7 @@ const RegistrationForm = () => {
           type="password"
           name="password"
           id={passwordId}
+          placeholder="Enter your password"
         />
         <ErrorMessage
           className={css.errorMassage}

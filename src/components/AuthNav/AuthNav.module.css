@@ -1,10 +1,11 @@
-.nav {
+.authNav {
   display: flex;
-  align-items: center;
   gap: 30px;
+  align-items: center;
 }
 
 .navLink {
+  text-decoration: none;
   color: inherit;
 }
 
