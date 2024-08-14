@@ -10,7 +10,7 @@ import { addContact } from "../../redux/contacts/operations";
 function ContactForm() {
   const inicialValues = {
     name: "",
-    number: "",
+    phoneNumber: "",
   };
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function ContactForm() {
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    number: Yup.string()
+    phoneNumber: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
@@ -67,12 +67,12 @@ function ContactForm() {
           <Field
             className={css.formInput}
             type="tel"
-            name="number"
+            name="phoneNumber"
             id={numberId}
           />
           <ErrorMessage
             className={css.errorMassage}
-            name="number"
+            name="phoneNumber"
             component="span"
           />
           <button className={css.formBtn} type="submit">

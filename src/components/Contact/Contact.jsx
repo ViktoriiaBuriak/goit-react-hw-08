@@ -6,7 +6,7 @@ import { deleteContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
-function Contact({ contacts: { name, number, id } }) {
+function Contact({ contacts }) {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,10 +23,10 @@ function Contact({ contacts: { name, number, id } }) {
       <div>
         <p className={css.contactName}>
           <BsFillPersonFill />
-          {name}
+          {contacts.name}
         </p>
         <p className={css.contactNumber}>
-          <BsFillTelephoneFill /> {number}
+          <BsFillTelephoneFill /> {contacts.phoneNumber}
         </p>
       </div>
       <button className={css.contactBtn} onClick={onOpenModal}>
@@ -38,7 +38,7 @@ function Contact({ contacts: { name, number, id } }) {
           <div className={css.btnWrap}>
             <button
               className={css.modalBtn}
-              onClick={() => onDeleteContact(id)}
+              onClick={() => onDeleteContact(contacts._id)}
             >
               Yes
             </button>

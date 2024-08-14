@@ -1,9 +1,8 @@
 .homeContainer {
-  width: max-content;
+  width: 335px;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  gap: 16px;
+  gap: 24px;
   border: 2px solid #2f2828;
   border-radius: 12px;
   padding: 20px;
@@ -14,6 +13,7 @@
 .homeParagraf {
   display: flex;
   gap: 12px;
+  font-size: 14px;
 }
 
 .link {
@@ -24,4 +24,13 @@
 .link:hover,
 .link:focus {
   color: #672858a9;
+}
+
+@media screen and (min-width: 768px){
+  .homeContainer {
+  width: max-content;
+  text-align: center;
+  gap: 16px;
+  font-size: 16px;
+}
 }

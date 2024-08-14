@@ -1,12 +1,12 @@
 .authNav {
+  position: relative;
   display: flex;
   gap: 30px;
   align-items: center;
 }
 
 .navLink {
-  text-decoration: none;
-  color: inherit;
+  display: none;
 }
 
 .navLink.active {
@@ -27,4 +27,68 @@
 .navLink.link:focus {
   border-color: #84336f;
   color: #84336f;
+}
+
+.mobContainer {
+  position: fixed;
+  width: 340px;
+  height: 100vh;
+  display: flex;
+  background-color: #000000;
+  right: 0;
+  top: 0;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.mobBtn{
+  display: block;
+}
+
+.mobBtnClose {
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 60px;
+}
+
+.navLinkMob {
+   text-decoration: none;
+    color: inherit;
+    width: max-content;
+}
+
+.navLinkMob:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.navLinkMob.active {
+  border: 2px solid #84336f;
+  border-radius: 8px;
+  color: #84336f;
+  padding: 8px;
+}
+
+.navLinkMob.link {
+  border: 2px solid #ffffff69;
+  border-radius: 8px;
+  padding: 8px;
+  transition: all 300ms ease-in-out;
+}
+
+.navLinkMob.link:hover,
+.navLinkMob.link:focus {
+  border-color: #84336f;
+  color: #84336f;
+}
+
+@media screen and (min-width: 768px) {
+  .navLink {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .mobBtn{
+  display: none;
+}
 }

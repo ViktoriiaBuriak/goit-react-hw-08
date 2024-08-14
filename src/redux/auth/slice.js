@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     name: null,
     email: null,
   },
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   loading: false,
@@ -34,8 +34,12 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          _id: action.payload._id,
+        };
+        state.accessToken = action.payload.accessToken;
       })
       .addCase(register.rejected, handleRejected)
       //login
@@ -43,8 +47,12 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          _id: action.payload._id,
+        };
+        state.accessToken = action.payload.accessToken;
       })
       .addCase(login.rejected, handleRejected)
       //logout
@@ -59,10 +67,14 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.isRefreshing = false;
         state.isLoggedIn = true;
-
-        state.user = action.payload;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          _id: action.payload._id,
+        };
+        state.accessToken = action.payload.accessToken; 
+        state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, handleRejected, (state) => {
         state.isRefreshing = true;

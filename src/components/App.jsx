@@ -6,7 +6,7 @@ import { refreshUser } from "../redux/auth/operations";
 import Layout from "./Layout/Layout";
 import RestrictedRoute from "./RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import { selectIsRefreshing } from "../redux/auth/selectors";
+import { selectIsRefreshing, selectToken } from "../redux/auth/selectors";
 
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
@@ -18,14 +18,22 @@ const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"));
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useSelector(selectIsRefreshing);
+  // const { isRefreshing } = useSelector(selectIsRefreshing);
+  const token = useSelector(selectToken)
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+    if(token) {
+    dispatch(refreshUser());}
+  }, [dispatch, token]);
+  // useEffect(() => {
+  //     dispatch(refreshUser());
+  // }, [dispatch]);
+
+  // return isRefreshing ? (
+  //   <b>Refreshing user...</b>
+  // ) : (
+
+  return(
     <>
       <Layout>
         <Suspense fallback={<Loader />}>
