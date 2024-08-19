@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: "https://nodejs-hw-mongodb-aub4.onrender.com",
+  // baseURL: "http://localhost:3000",
+  withCredentials: true,
 });
 
 export const setToken = (token) => {

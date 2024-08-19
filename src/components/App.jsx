@@ -18,13 +18,17 @@ const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"));
 
 function App() {
   const dispatch = useDispatch();
-  // const { isRefreshing } = useSelector(selectIsRefreshing);
+  const { isRefreshing } = useSelector(selectIsRefreshing);
   const token = useSelector(selectToken)
 
   useEffect(() => {
     if(token) {
     dispatch(refreshUser());}
   }, [dispatch, token]);
+
+  if (isRefreshing) {
+    return <b>Refreshing user...</b>;
+  }
   // useEffect(() => {
   //     dispatch(refreshUser());
   // }, [dispatch]);

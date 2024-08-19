@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, refreshUser, register } from "./operations";
 
 const INITIAL_STATE = {
-  user: {
-    name: null,
-    email: null,
-  },
+  // user: {
+  //   name: null,
+  //   email: null,
+  // },
+  user: null,
   accessToken: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -34,11 +35,12 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = {
-          name: action.payload.name,
-          email: action.payload.email,
-          _id: action.payload._id,
-        };
+        state.user = action.payload.user;
+        // state.user = {
+        //   name: action.payload.name,
+        //   email: action.payload.email,
+        //   _id: action.payload._id,
+        // };
         state.accessToken = action.payload.accessToken;
       })
       .addCase(register.rejected, handleRejected)
@@ -47,11 +49,12 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = {
-          name: action.payload.name,
-          email: action.payload.email,
-          _id: action.payload._id,
-        };
+        // state.user = {
+        //   name: action.payload.name,
+        //   email: action.payload.email,
+        //   _id: action.payload._id,
+        // };
+        state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
       })
       .addCase(login.rejected, handleRejected)
@@ -68,11 +71,11 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = {
-          name: action.payload.name,
-          email: action.payload.email,
-          _id: action.payload._id,
-        };
+        // state.user = {
+        //   name: action.payload.name,
+        //   email: action.payload.email,
+        //   _id: action.payload._id,
+        // };
         state.accessToken = action.payload.accessToken; 
         state.isRefreshing = false;
       })
